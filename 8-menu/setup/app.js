@@ -71,4 +71,73 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "steaky steak",
+    category: "dinner",
+    price: 26.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
+
+const secCenter = document.querySelector('.section-center')
+const btnContainer = document.querySelector('.btn-container')
+
+// load items
+window.addEventListener('DOMContentLoaded', () => {
+  displayMenuItems(menu)
+  displayFilterBtns()
+})
+
+const displayMenuItems = (menuItems) => {
+  let dispMenu = menuItems.map((i) => {
+    //console.log(i)
+
+    return `
+    <article class="menu-item">
+      <img src=${i.img} class="photo" alt=${i.title}>
+      <div class="item-info">
+        <header>
+          <h4>${i.title}</h4>
+          <h4 class="price">${i.price}€</h4>
+        </header>
+        <p class="item-text">${i.desc}</p>
+      </div>
+    </article>`
+  })
+  dispMenu = dispMenu.join('')
+  secCenter.innerHTML = dispMenu
+}
+
+const displayFilterBtns = () => {
+  const categories = menu.reduce((values, item) => {
+    if (!values.includes(item.category)) {
+      values.push(item.category)
+    }
+    return values
+  }, ['all'])
+  const categoryBtns = categories.map((c) => {
+    return `
+    <button class="filter-btn" type="button" data-id=${c}>
+      ${c}
+    </button>`
+  }).join('')
+  console.log(categoryBtns)
+  
+  btnContainer.innerHTML = categoryBtns
+  const filterBtns = document.querySelectorAll('.filter-btn')
+  
+  // filter items
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      const category = e.currentTarget.dataset.id
+      const menuCategory = menu.filter((menuItem) => {
+        if (menuItem.category === category || category === 'all') {
+          return menuItem
+        } 
+      })
+      displayMenuItems(menuCategory)
+    })
+  })
+}
