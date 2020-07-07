@@ -87,6 +87,7 @@ img:not(.logo) {
 }
 img {
   display: block;
+  cursor: pointer;
 }
 
 h1,
@@ -195,7 +196,7 @@ Scroll
 */
 /* navbar */
 nav {
-  background: var(--clr-white);
+  background: transparent;
   padding: 1rem 1.5rem;
 }
 /* fixed nav */
