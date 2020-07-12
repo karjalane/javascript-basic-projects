@@ -30,6 +30,7 @@ let futureDate = new Date(2020, 7, 30, 22, 00, 00)
 
 const year = futureDate.getFullYear()
 const hours = futureDate.getHours()
+const minutes = futureDate.getMinutes()
 const date = futureDate.getDate()
 const weekday = weekdays[futureDate.getDay()]
 let month = futureDate.getMonth()
